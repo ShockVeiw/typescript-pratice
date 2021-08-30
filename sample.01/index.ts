@@ -1,14 +1,7 @@
 import * as shortid from 'shortid';
 
-interface INote {
-    readonly id: string;
-    title: string;
-    content: string;
-}
-
-interface IPremiumNote extends INote {
-    isPrivate: boolean;
-}
+import { INote, IPremiumNote } from './interfaces';
+import { getNoteIndexById } from './utils';
 
 class Note implements INote {
     readonly id: string;
@@ -63,12 +56,7 @@ class User {
     }
 
     deleteNote(noteId: string) {
-        const index = this.notes.findIndex(note => note.id === noteId);
-        if (index === -1) {
-            throw new Error("No such note")
-        }
-
-        this.notes.splice(index, 1);
+        this.notes.splice(getNoteIndexById(this.notes, noteId), 1);
     }
 }
 
@@ -81,21 +69,11 @@ class PremiumUser extends User {
     }
 
     makePrivateNote(noteId: string) {
-        const index = this.notes.findIndex(note => note.id === noteId);
-        if (index === -1) {
-            throw new Error("No such note")
-        }
-
-        this.notes[index].isPrivate = true;
+        this.notes[getNoteIndexById(this.notes, noteId)].isPrivate = true;
     }
 
     makePublicNote(noteId: string) {
-        const index = this.notes.findIndex(note => note.id === noteId);
-        if (index === -1) {
-            throw new Error("No such note")
-        }
-
-        this.notes[index].isPrivate = false;
+        this.notes[getNoteIndexById(this.notes, noteId)].isPrivate = false;
     }
 }
 
