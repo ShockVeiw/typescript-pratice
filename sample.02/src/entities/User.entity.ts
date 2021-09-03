@@ -1,7 +1,7 @@
-import { Cascade, Entity, OneToMany, Property } from '@mikro-orm/core';
+import {Cascade, Collection, Entity, OneToMany, Property} from '@mikro-orm/core';
 
 import { BaseEntity } from './Base.entity';
-import { Note }  from '.';
+import {Note, PremiumNote} from '.';
 
 @Entity()
 export class User extends BaseEntity {
@@ -15,8 +15,8 @@ export class User extends BaseEntity {
     @Property()
     isActive: boolean = false;
 
-    @OneToMany(() => Note, note => note.user, { cascade: [Cascade.ALL] })
-    notes: Note[] = [];
+    @OneToMany(() => Note, note => note.user, { cascade: [Cascade.REMOVE] })
+    notes = new Collection<Note | PremiumNote>(this);
 
     constructor(name: string, password: string, isActive?: boolean) {
         super();

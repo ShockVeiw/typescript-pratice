@@ -10,8 +10,8 @@ export class PremiumNote extends Note {
     @Property()
     isPrivated: boolean;
 
-    constructor(title: string, content: string, isPrivated: boolean) {
-        super(title, content);
+    constructor(title: string, content: string, user: PremiumUser, isPrivated: boolean) {
+        super(title, content, user);
         this.isPrivated = isPrivated;
     }
 }

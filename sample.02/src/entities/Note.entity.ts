@@ -12,12 +12,13 @@ export class Note extends BaseEntity {
     @Property()
     content: string;
 
-    @ManyToOne('User')
-    user!: User;
+    @ManyToOne()
+    user: User;
 
-    constructor(title: string, content: string) {
+    constructor(title: string, content: string, user: User) {
         super();
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 }
