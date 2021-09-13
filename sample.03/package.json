@@ -1,0 +1,29 @@
+{
+  "name": "sample.03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mikro-orm/core": "^4.5.9",
+    "@mikro-orm/migrations": "^4.5.9",
+    "@mikro-orm/postgresql": "^4.5.9",
+    "mikro-orm": "^4.5.9",
+    "ts-node": "^10.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.2"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/src/mikro-orm.config.js"
+    ]
+  }
+}
